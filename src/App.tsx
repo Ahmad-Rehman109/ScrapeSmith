@@ -5,6 +5,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import YouTubeScraper from "./pages/scrapers/YouTubeScraper";
+import GoogleMapsScraper from "./pages/scrapers/GoogleMapsScraper";
+import AirbnbScraper from "./pages/scrapers/AirbnbScraper";
+import ZillowScraper from "./pages/scrapers/ZillowScraper";
+import TripAdvisorScraper from "./pages/scrapers/TripAdvisorScraper";
+import YouTubeShortsScraper from "./pages/scrapers/YouTubeShortsScraper";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +25,15 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/scrapers/youtube" element={<YouTubeScraper />} />
+          <Route path="/scrapers/youtube-shorts" element={<YouTubeShortsScraper />} />
+          <Route path="/scrapers/google-maps" element={<GoogleMapsScraper />} />
+          <Route path="/scrapers/airbnb" element={<AirbnbScraper />} />
+          <Route path="/scrapers/zillow" element={<ZillowScraper />} />
+          <Route path="/scrapers/tripadvisor" element={<TripAdvisorScraper />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
