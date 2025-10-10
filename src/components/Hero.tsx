@@ -24,7 +24,7 @@ export const Hero = () => {
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
             Data extraction that{" "}
-            <span className="text-transparent bg-clip-text gradient-primary animate-pulse">
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               scales
             </span>{" "}
             with your business
