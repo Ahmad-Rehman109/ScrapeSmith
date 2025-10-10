@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import scraperLogo from "@/assets/scrapesmith-logo.png";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,10 +42,12 @@ export const Navigation = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">S</span>
-              </div>
+            <Link to="/" className="flex items-center space-x-3 group">
+              <img 
+                src={scraperLogo} 
+                alt="ScrapeSmith" 
+                className="w-10 h-10 transition-transform group-hover:scale-110"
+              />
               <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                 ScrapeSmith
               </span>

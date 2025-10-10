@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Github, Mail } from "lucide-react";
+import scraperLogo from "@/assets/scrapesmith-logo.png";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,10 +11,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">S</span>
-              </div>
+            <div className="flex items-center space-x-3">
+              <img 
+                src={scraperLogo} 
+                alt="ScrapeSmith" 
+                className="w-10 h-10"
+              />
               <span className="text-xl font-bold">ScrapeSmith</span>
             </div>
             <p className="text-sm text-secondary-foreground/80">
@@ -111,14 +114,14 @@ export const Footer = () => {
             </p>
             <div className="flex items-center space-x-6">
               <a
-                href="mailto:contact@scrapesmith.com"
+                href="mailto:scrapesmith01@gmail.com"
                 className="text-secondary-foreground/60 hover:text-primary transition-colors"
                 aria-label="Email"
               >
                 <Mail size={20} />
               </a>
               <a
-                href="https://github.com/scrapesmith"
+                href="https://github.com/ScrapeSmith"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-secondary-foreground/60 hover:text-primary transition-colors"
