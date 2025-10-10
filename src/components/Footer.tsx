@@ -13,10 +13,10 @@ export const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <img 
-                src={scraperLogo} 
-                alt="ScrapeSmith" 
-                className="w-10 h-10"
-              />
+                  src={scraperLogo} 
+                  alt="ScrapeSmith" 
+                  className="w-10 h-10 rounded-full"
+                />
               <span className="text-xl font-bold">ScrapeSmith</span>
             </div>
             <p className="text-sm text-secondary-foreground/80">
