@@ -44,10 +44,10 @@ export const Navigation = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
               <img 
-                src={scraperLogo} 
-                alt="ScrapeSmith" 
-                className="w-10 h-10 transition-transform group-hover:scale-110"
-              />
+                  src={scraperLogo} 
+                  alt="ScrapeSmith" 
+                  className="w-10 h-10 rounded-full transition-transform group-hover:scale-110"
+                />
               <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                 ScrapeSmith
               </span>
