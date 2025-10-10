@@ -113,21 +113,12 @@ export const Footer = () => {
               © {currentYear} ScrapeSmith. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-              <a
-                href="mailto:scrapesmith01@gmail.com"
+  
+                href="mailto:scrapesmith.help@gmail.com"
                 className="text-secondary-foreground/60 hover:text-primary transition-colors"
-                aria-label="Email"
+                aria-label="Email Support"
               >
                 <Mail size={20} />
-              </a>
-              <a
-                href="https://github.com/ScrapeSmith"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-secondary-foreground/60 hover:text-primary transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
               </a>
             </div>
           </div>
