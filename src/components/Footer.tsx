@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Github, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import scraperLogo from "@/assets/scrapesmith-logo.png";
 
 export const Footer = () => {
