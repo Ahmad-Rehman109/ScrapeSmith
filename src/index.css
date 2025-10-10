@@ -166,7 +166,10 @@ All colors MUST be HSL.
   .transition-fast {
     transition: var(--transition-fast);
   }
-  
+    .page-transition {
+    animation: fade-in 0.3s ease-in-out;
+  }
+
   .bg-grid-pattern {
     background-image: 
       linear-gradient(to right, hsl(var(--primary) / 0.05) 1px, transparent 1px),
