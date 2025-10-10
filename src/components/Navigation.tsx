@@ -25,7 +25,7 @@ export const Navigation = () => {
   const navLinks = [
     { name: "Services", path: "/services" },
     { name: "Industries", path: "/industries" },
-    { name: "Scrapers", path: "/#scrapers" },
+    { name: "Scrapers", path: "#scrapers" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
