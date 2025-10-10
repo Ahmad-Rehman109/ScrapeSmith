@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Industries from "./pages/Industries";
 import YouTubeScraper from "./pages/scrapers/YouTubeScraper";
 import GoogleMapsScraper from "./pages/scrapers/GoogleMapsScraper";
 import AirbnbScraper from "./pages/scrapers/AirbnbScraper";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/industries" element={<Industries />} />
           <Route path="/scrapers/youtube" element={<YouTubeScraper />} />
           <Route path="/scrapers/youtube-shorts" element={<YouTubeShortsScraper />} />
           <Route path="/scrapers/google-maps" element={<GoogleMapsScraper />} />
