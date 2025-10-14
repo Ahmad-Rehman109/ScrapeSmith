@@ -92,16 +92,6 @@ export const Footer = () => {
                   Contact
                 </Link>
               </li>
-              <li>
-                <a 
-                  href="https://apify.com/scrapesmith" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-sm text-secondary-foreground/80 hover:text-primary transition-colors"
-                >
-                  Apify Profile
-                </a>
-              </li>
             </ul>
           </div>
         </div>
@@ -113,7 +103,7 @@ export const Footer = () => {
               © {currentYear} ScrapeSmith. All rights reserved.
             </p>
             <div className="flex items-center space-x-6">
-  
+              <a 
                 href="mailto:scrapesmith.help@gmail.com"
                 className="text-secondary-foreground/60 hover:text-primary transition-colors"
                 aria-label="Email Support"

@@ -24,40 +24,28 @@ const Contact = () => {
 
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      subject: formData.get('subject'),
-      message: formData.get('message'),
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      subject: formData.get('subject') as string,
+      message: formData.get('message') as string,
     };
 
     try {
-      // Using Formspree (you need to create account at formspree.io)
-      // Replace YOUR_FORM_ID with your actual Formspree form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Message sent!",
-          description: "We'll get back to you within 24 hours.",
-        });
-        (e.target as HTMLFormElement).reset();
-      } else {
-        throw new Error('Failed to send');
-      }
-    } catch (error) {
-      // Fallback to mailto if Formspree fails
-      const mailtoLink = `mailto:scrapesmith.help@gmail.com?subject=${encodeURIComponent(data.subject as string)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
+      // Send email using mailto
+      const mailtoLink = `mailto:scrapesmith.help@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
       window.location.href = mailtoLink;
       
       toast({
         title: "Opening email client",
-        description: "Your default email app will open with the message.",
+        description: "Your default email app will open with the message pre-filled.",
+      });
+      
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to open email client. Please email us directly at scrapesmith.help@gmail.com",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -107,7 +95,7 @@ const Contact = () => {
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-2 mx-auto">
                     <MessageSquare className="text-primary" size={24} />
                   </div>
-                  <CardTitle>Sales Inquiry</CardTitle>
+                  <CardTitle>Sales & Quotes</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <a 
