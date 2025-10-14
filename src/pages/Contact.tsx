@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, MessageSquare, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,21 +31,36 @@ const Contact = () => {
       message: formData.get('message') as string,
     };
 
+    // Determine email type based on subject keywords
+    const isQuoteRequest = data.subject.toLowerCase().includes('quote') || 
+                          data.subject.toLowerCase().includes('sales') ||
+                          data.subject.toLowerCase().includes('pricing');
+    const type = isQuoteRequest ? 'quote' : 'help';
+
     try {
-      // Send email using mailto
-      const mailtoLink = `mailto:scrapesmith.help@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
-      window.location.href = mailtoLink;
-      
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          type: type,
+        },
+      });
+
+      if (error) throw error;
+
       toast({
-        title: "Opening email client",
-        description: "Your default email app will open with the message pre-filled.",
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
       });
       
       (e.target as HTMLFormElement).reset();
     } catch (error) {
+      console.error('Error sending email:', error);
       toast({
         title: "Error",
-        description: "Failed to open email client. Please email us directly at scrapesmith.help@gmail.com",
+        description: "Failed to send message. Please email us directly.",
         variant: "destructive",
       });
     } finally {
