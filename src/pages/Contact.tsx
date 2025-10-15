@@ -2,10 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, Clock } from "lucide-react";
+import { Mail, MessageSquare } from "lucide-react";
 import { useEffect } from "react";
 
 const Contact = () => {
@@ -14,27 +11,19 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const subject = formData.get('subject') as string;
-    const message = formData.get('message') as string;
-
-    // Determine recipient based on subject keywords
-    const isQuoteRequest = subject.toLowerCase().includes('quote') || 
-                          subject.toLowerCase().includes('sales') ||
-                          subject.toLowerCase().includes('pricing');
-    const recipient = isQuoteRequest ? 'scrapesmith1@gmail.com' : 'scrapesmith.help@gmail.com';
-
-    // Create mailto link with prefilled content
-    const mailtoBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
-    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
+  const handleEmailClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    recipient: string
+  ) => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isMobile = /iphone|ipad|ipod|android|mobile/.test(ua);
+    if (!isMobile) {
+      e.preventDefault();
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+        recipient
+      )}`;
+      window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -69,6 +58,9 @@ const Contact = () => {
                   <a 
                     href="mailto:scrapesmith.help@gmail.com"
                     className="text-primary hover:underline"
+                    onClick={(e) => handleEmailClick(e, 'scrapesmith.help@gmail.com')}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     scrapesmith.help@gmail.com
                   </a>
@@ -86,6 +78,9 @@ const Contact = () => {
                   <a 
                     href="mailto:scrapesmith1@gmail.com"
                     className="text-primary hover:underline"
+                    onClick={(e) => handleEmailClick(e, 'scrapesmith1@gmail.com')}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     scrapesmith1@gmail.com
                   </a>
