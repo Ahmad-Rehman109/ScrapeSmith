@@ -22,6 +22,22 @@ const scrapers = [
     apifyUrl: "https://apify.com/scrapesmith/free-youtube-shorts-scraper",
   },
   {
+    id: "tiktok",
+    title: "TikTok Profile Scraper",
+    category: "Social Media",
+    description: "Extract TikTok profile data, videos, follower counts, and engagement metrics for social analysis.",
+    features: ["Profile data", "Videos", "Followers", "Engagement"],
+    apifyUrl: "https://apify.com/scrapesmith/free-tiktok-profile-scraper",
+  },
+  {
+    id: "instagram",
+    title: "Instagram Profile Scraper",
+    category: "Social Media",
+    description: "Profile information, posts, followers, and engagement data from Instagram for marketing insights.",
+    features: ["Profile info", "Posts", "Followers", "Analytics"],
+    apifyUrl: "https://apify.com/scrapesmith/free-instagram-profile-scraper",
+  },
+  {
     id: "google-maps",
     title: "Google Maps Scraper",
     category: "Business Intelligence",
@@ -70,7 +86,7 @@ export const Scrapers = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {scrapers.map((scraper, index) => (
+          {scrapers.slice(0, 8).map((scraper, index) => (
             <Card
               key={scraper.id}
               className="group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-border/50 hover:border-primary/50 flex flex-col"

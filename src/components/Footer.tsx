@@ -17,7 +17,7 @@ export const Footer = () => {
                   alt="ScrapeSmith" 
                   className="w-10 h-10 rounded-full"
                 />
-              <span className="text-xl font-bold text-foreground">ScrapeSmith</span>
+              <span className="text-xl font-bold text-white">ScrapeSmith</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Enterprise web scraping solutions. Production-ready scrapers deployed on Apify.
@@ -26,7 +26,7 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">Services</h3>
+            <h3 className="font-semibold mb-4 text-white">Services</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -53,7 +53,7 @@ export const Footer = () => {
 
           {/* Scrapers */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">Scrapers</h3>
+            <h3 className="font-semibold mb-4 text-white">Scrapers</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/scrapers/youtube" className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -80,7 +80,7 @@ export const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4 text-foreground">Company</h3>
+            <h3 className="font-semibold mb-4 text-white">Company</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
