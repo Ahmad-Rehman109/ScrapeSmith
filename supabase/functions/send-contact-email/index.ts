@@ -28,7 +28,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Determine recipient based on type
     const toEmail = type === "help" 
       ? "scrapesmith.help@gmail.com" 
-      : "scrapesmith01@gmail.com";
+      : "scrapesmith1@gmail.com";
 
     console.log(`Sending ${type} email to ${toEmail} from ${name} (${email})`);
 

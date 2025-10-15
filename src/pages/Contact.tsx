@@ -115,10 +115,10 @@ const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <a 
-                    href="mailto:scrapesmith01@gmail.com"
+                    href="mailto:scrapesmith1@gmail.com"
                     className="text-primary hover:underline"
                   >
-                    scrapesmith01@gmail.com
+                    scrapesmith1@gmail.com
                   </a>
                 </CardContent>
               </Card>
