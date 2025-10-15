@@ -6,66 +6,35 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, MessageSquare, Clock } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { useEffect } from "react";
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
   useEffect(() => {
     document.title = "Contact Us - ScrapeSmith";
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      subject: formData.get('subject') as string,
-      message: formData.get('message') as string,
-    };
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const subject = formData.get('subject') as string;
+    const message = formData.get('message') as string;
 
-    // Determine email type based on subject keywords
-    const isQuoteRequest = data.subject.toLowerCase().includes('quote') || 
-                          data.subject.toLowerCase().includes('sales') ||
-                          data.subject.toLowerCase().includes('pricing');
-    const type = isQuoteRequest ? 'quote' : 'help';
+    // Determine recipient based on subject keywords
+    const isQuoteRequest = subject.toLowerCase().includes('quote') || 
+                          subject.toLowerCase().includes('sales') ||
+                          subject.toLowerCase().includes('pricing');
+    const recipient = isQuoteRequest ? 'scrapesmith1@gmail.com' : 'scrapesmith.help@gmail.com';
 
-    try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
-          name: data.name,
-          email: data.email,
-          subject: data.subject,
-          message: data.message,
-          type: type,
-        },
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      
-      (e.target as HTMLFormElement).reset();
-    } catch (error) {
-      console.error('Error sending email:', error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please email us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Create mailto link with prefilled content
+    const mailtoBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${encodeURIComponent(message)}`;
+    const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${mailtoBody}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -193,9 +162,8 @@ const Contact = () => {
                       type="submit" 
                       size="lg" 
                       className="w-full"
-                      disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      Send Message
                     </Button>
                   </form>
                 </CardContent>
