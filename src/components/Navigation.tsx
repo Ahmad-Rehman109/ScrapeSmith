@@ -63,7 +63,9 @@ export const Navigation = () => {
                 className="w-10 h-10 rounded-full transition-transform group-hover:scale-110"
               />
               <span className={`text-xl font-bold group-hover:text-primary transition-colors ${
-                isScrolled ? "text-foreground" : "text-white"
+                location.pathname === "/" 
+                  ? (isScrolled ? "text-foreground" : "text-white")
+                  : "text-foreground"
               }`}>
                 ScrapeSmith
               </span>

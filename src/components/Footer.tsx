@@ -105,6 +105,10 @@ export const Footer = () => {
             <div className="flex items-center space-x-6">
               <a 
                 href="mailto:scrapesmith.help@gmail.com"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=scrapesmith.help@gmail.com`, '_blank');
+                }}
                 className="text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Email Support"
               >

@@ -16,6 +16,8 @@ import AirbnbScraper from "./pages/scrapers/AirbnbScraper";
 import ZillowScraper from "./pages/scrapers/ZillowScraper";
 import TripAdvisorScraper from "./pages/scrapers/TripAdvisorScraper";
 import YouTubeShortsScraper from "./pages/scrapers/YouTubeShortsScraper";
+import TikTokScraper from "./pages/scrapers/TikTokScraper";
+import InstagramScraper from "./pages/scrapers/InstagramScraper";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,8 @@ const App = () => (
             <Route path="/scrapers/airbnb" element={<AirbnbScraper />} />
             <Route path="/scrapers/zillow" element={<ZillowScraper />} />
             <Route path="/scrapers/tripadvisor" element={<TripAdvisorScraper />} />
+            <Route path="/scrapers/tiktok" element={<TikTokScraper />} />
+            <Route path="/scrapers/instagram" element={<InstagramScraper />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
