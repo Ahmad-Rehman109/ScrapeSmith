@@ -28,14 +28,12 @@ function initMobileNav() {
     nav.classList.remove("is-open");
     toggle.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("nav-open");
   };
 
   toggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
     toggle.classList.toggle("is-open", isOpen);
     toggle.setAttribute("aria-expanded", String(isOpen));
-    document.body.classList.toggle("nav-open", isOpen);
   });
 
   nav.querySelectorAll("a").forEach((link) => {
@@ -47,6 +45,89 @@ function initMobileNav() {
       closeNav();
     }
   });
+}
+
+function initSmartHeader() {
+  const header = document.querySelector(".site-header");
+  const nav = document.querySelector("[data-nav]");
+
+  if (!header) {
+    return;
+  }
+
+  let lastScrollY = window.scrollY;
+  let downDistance = 0;
+  let upDistance = 0;
+  let ticking = false;
+
+  const showHeader = () => {
+    header.classList.remove("is-hidden");
+  };
+
+  const hideHeader = () => {
+    header.classList.add("is-hidden");
+  };
+
+  const onScroll = () => {
+    const currentScrollY = window.scrollY;
+    const delta = currentScrollY - lastScrollY;
+    const navOpen = nav?.classList.contains("is-open");
+
+    if (navOpen) {
+      showHeader();
+      lastScrollY = currentScrollY;
+      downDistance = 0;
+      upDistance = 0;
+      ticking = false;
+      return;
+    }
+
+    if (currentScrollY <= 36) {
+      showHeader();
+      lastScrollY = currentScrollY;
+      downDistance = 0;
+      upDistance = 0;
+      ticking = false;
+      return;
+    }
+
+    if (Math.abs(delta) < 2) {
+      ticking = false;
+      return;
+    }
+
+    if (delta > 0) {
+      downDistance += delta;
+      upDistance = 0;
+
+      if (currentScrollY > 140 && downDistance > 28) {
+        hideHeader();
+      }
+    } else {
+      upDistance += Math.abs(delta);
+      downDistance = 0;
+
+      if (upDistance > 52 || currentScrollY < 96) {
+        showHeader();
+      }
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(onScroll);
+    },
+    { passive: true }
+  );
 }
 
 function initSmoothScroll() {
@@ -102,8 +183,8 @@ function initReveals() {
       });
     },
     {
-      threshold: 0.18,
-      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.1,
+      rootMargin: "0px 0px 5% 0px",
     }
   );
 
@@ -244,6 +325,7 @@ function initGmailComposeForm() {
 document.addEventListener("DOMContentLoaded", () => {
   setActiveNav();
   initMobileNav();
+  initSmartHeader();
   initSmoothScroll();
   initReveals();
   initCounters();
